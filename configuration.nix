@@ -131,11 +131,8 @@
   users.users.matto = {
     isNormalUser = true;
     description = "Matto";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" ];
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -157,7 +154,7 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
   # Enable Flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Allow dinamically linked executables
   programs.nix-ld.enable = true;
