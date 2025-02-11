@@ -17,9 +17,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # imports = [
-  #   ./home/programs/browsers/firefox.nix
-  # ];
+  imports = [
+    ./programs/browsers/firefox.nix
+  ];
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -34,10 +34,20 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      ll = "ls -lah";
+      # NixOS
       hms = "cd ~/.dotfiles && home-manager switch --flake .";
       nrs = "cd ~/.dotfiles && sudo nixos-rebuild switch --flake .";
+
+      # Terminal
+      ll = "ls -lah";
+
+      # Development
       arduino = "nix develop github:xdadrm/nixos_use_platformio_patformio-ide_and_vscode";
+
+      # Git
+      gs = "git status";
+      gd = "git diff";
+      gc = "git commit -a -m";
     };
   };
 

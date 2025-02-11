@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 
-  let
-    lock-false = {
-      Value = false;
-      Status = "locked";
-    };
-    lock-true = {
-      Value = true;
-      Status = "locked";
-    };
-  in
+let
+  lock-false = {
+    Value = false;
+    Status = "locked";
+  };
+  lock-true = {
+    Value = true;
+    Status = "locked";
+  };
+in
 {
   programs = {
     firefox = {
@@ -93,10 +93,24 @@
       # For options that are available in Home-Manager see
       # https://nix-community.github.io/home-manager/options.html#opt-programs.firefox.profiles
       # profiles = {
-      #   profile_0 = {           # choose a profile name; directory is /home/<user>/.mozilla/firefox/profile_0
+      #   matto = {               # the profile name
       #     id = 0;               # 0 is the default profile; see also option "isDefault"
-      #     name = "profile_0";   # name as listed in about:profiles
+      #     name = "matto"        # name as listed in about:profiles
       #     isDefault = true;     # can be omitted; true if profile ID is 0
+      #     search = {
+      #       force = true;
+      #       default = "Kagi";
+      #       privateDefault = "DuckDuckGo";
+      #       order = ["Kagi" "DuckDuckGo" "Google"];
+      #       engines = {
+      #         "Kagi" = {
+      #           urls = [{template = "https://kagi.com/search?q={searchTerms}";}];
+      #           iconUpdateURL = "https://kagi.com/favicon.ico";
+      #         };
+      #         "Bing".metaData.hidden = true;
+      #       };
+      #     };
+      #     bookmarks = {};
       #     settings = {          # specify profile-specific preferences here; check about:config for options
       #       "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
       #       "browser.startup.homepage" = "https://nixos.org";
@@ -104,7 +118,7 @@
       #         title = "NixOS";
       #         url = "https://nixos.org";
       #       }];
-      #       # add preferences for profile_0 here...
+      #       # add preferences for matto here...
       #     };
       #   };
       #   profile_1 = {
