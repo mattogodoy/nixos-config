@@ -84,6 +84,7 @@
           [meta_mac:C]
           left = home
           right = end
+          backspace = macro(S-home delete)
 
           # Switch directly to an open tab (e.g. Firefox, VS code)
           1 = A-1

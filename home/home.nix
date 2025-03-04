@@ -19,6 +19,7 @@
 
   imports = [
     ./programs/browsers/firefox.nix
+    ./programs/browsers/librewolf.nix
   ];
 
   # The home.packages option allows you to install Nix packages into your
@@ -51,23 +52,6 @@
     };
   };
 
-  programs.librewolf = {
-    enable = true;
-    settings = {
-      "privacy.clearOnShutdown.history" = false;
-      "privacy.clearOnShutdown.cookies" = false;
-      "browser.sessionstore.resume_from_crash" = true;
-    };
-    policies = {
-      ExtensionSettings = {
-        "uBlock0@raymondhill.net" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          installation_mode = "force_installed";
-        };
-      };
-    };
-  };
-
   programs.git = {
     enable = true;
     userName = "Matto Godoy";
@@ -82,6 +66,13 @@
     extensions = [
       pkgs.vscode-extensions.bbenoist.nix
       pkgs.vscode-extensions.arrterian.nix-env-selector
+    ];
+    keybindings = [
+      {
+        key = "ctrl+backspace";
+        command = "editor.action.deleteLines";
+        when = "textInputFocus && !editorReadonly";
+      }
     ];
   };
 }
