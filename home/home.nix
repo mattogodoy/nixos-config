@@ -18,6 +18,15 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
+    ./programs/shell/bash.nix
+    ./programs/shell/zsh.nix
+
+    ./programs/tools/git.nix
+
+    ./programs/terminals/wezterm
+
+    ./programs/ide/vscode.nix
+
     ./programs/browsers/firefox.nix
     ./programs/browsers/librewolf.nix
   ];
@@ -31,48 +40,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      # NixOS
-      hms = "cd ~/.dotfiles && home-manager switch --flake .";
-      nrs = "cd ~/.dotfiles && sudo nixos-rebuild switch --flake .";
-
-      # Terminal
-      ll = "ls -lah";
-
-      # Development
-      arduino = "nix develop github:xdadrm/nixos_use_platformio_patformio-ide_and_vscode";
-
-      # Git
-      gs = "git status";
-      gd = "git diff";
-      gc = "git commit -a -m";
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Matto Godoy";
-    userEmail = "mattogodoy@gmail.com";
-    extraConfig = {
-      init.defaultBranch = "master";
-    };
-  };
-
-  programs.vscode = {
-    enable = true;
-    extensions = [
-      pkgs.vscode-extensions.bbenoist.nix
-      pkgs.vscode-extensions.arrterian.nix-env-selector
-    ];
-    keybindings = [
-      {
-        key = "ctrl+backspace";
-        command = "editor.action.deleteLines";
-        when = "textInputFocus && !editorReadonly";
-      }
-    ];
-  };
 }

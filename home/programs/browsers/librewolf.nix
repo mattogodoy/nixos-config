@@ -50,7 +50,6 @@ in
           "browser.tabs.groups.enabled" = lock-true;
           "browser.startup.page" = 3; # This is not documented: "Open previous windows and tabs"
           "browser.ctrlTab.sortByRecentlyUsed" = lock-true;
-          "extensions.screenshots.disabled" = lock-true;
           "browser.topsites.contile.enabled" = lock-false;
           "browser.formfill.enable" = lock-false;
           "browser.search.suggest.enabled" = lock-false;
@@ -65,6 +64,8 @@ in
           "browser.newtabpage.activity-stream.showSponsored" = lock-false;
           "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+          "extensions.screenshots.disabled" = lock-true;
+          #"pref.privacy.disable_button.cookie_exceptions" = lock-false;
         };
       };
 
@@ -87,6 +88,65 @@ in
                 urls = [{template = "https://kagi.com/search?q={searchTerms}";}];
                 iconUpdateURL = "https://kagi.com/favicon.ico";
               };
+
+              "OpenStreetMap" = {
+                urls = [{
+                  template = "https://openstreetmap.org/search";
+                  params = [
+                  { name = "query"; value = "{searchTerms}"; }
+                  ];
+                }];
+                icon = "${pkgs.fetchurl {
+                  url = "https://wiki.openstreetmap.org/w/images/7/79/Public-images-osm_logo.svg";
+                  sha256 = "7afb5dc08cde400274e7405fda6324a6514c4f957227b659f9c8aaea4d59a899";
+                }}";
+                definedAliases = [ "@map" ];
+              };
+
+              "Nix Packages" = {
+                urls = [
+                  {
+                    template = "https://search.nixos.org/packages";
+                    params = [
+                      { name = "channel"; value = "unstable"; }
+                      { name = "query"; value = "{searchTerms}"; }
+                    ];
+                  }
+                ];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = [ "@nixpkgs" ];
+              };
+
+              "NixOptions" = {
+                urls = [
+                  {
+                    template = "https://search.nixos.org/options";
+                    params = [
+                      { name = "query";   value = "{searchTerms}"; }
+                      { name = "channel"; value = "unstable"; }
+                    ];
+                  }
+                ];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = [ "@options" ];
+              };
+
+              "MyNixOs (configurations overview)" = {
+                urls = [
+                  {
+                    template = "https://mynixos.com/search";
+                    params = [
+                      { name = "q"; value = "{searchTerms}"; }
+                    ];
+                  }
+                ];
+                icon = "${pkgs.fetchurl {
+                  url = "https://mynixos.com/favicon-32x32.png";
+                  sha256 = "2b9301ff8dfbc359dbe6793ea6fc3eaa5815e0d01256e505aebbd76a3f5e84b6";
+                }}";
+                definedAliases = [ "@mynixos" ];
+              };
+
               "Bing".metaData.hidden = true;
             };
           };
