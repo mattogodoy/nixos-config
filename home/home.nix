@@ -18,24 +18,8 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    ./programs/shell/bash.nix
-    ./programs/shell/zsh.nix
-
-    ./programs/tools/git.nix
-
-    ./programs/terminals/wezterm
-
-    ./programs/ide/vscode.nix
-
-    ./programs/browsers/firefox.nix
-    ./programs/browsers/librewolf.nix
-  ];
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = [
-    pkgs._1password-gui
-    pkgs.telegram-desktop
+    ./home-packages.nix
+    ./modules
   ];
 
   # Let Home Manager install and manage itself.
