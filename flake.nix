@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -25,7 +25,10 @@
     homeConfigurations = {
       matto = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home/home.nix ];
+        modules = [
+          ./home-manager/home.nix
+        ];
+        extraSpecialArgs = { inherit inputs; };
       };
     };
   };
