@@ -73,7 +73,7 @@
           # It has to be set to CMD + Space manually from the settings
           # scale is F3 key in a mac
           scale = C-space
-          
+
           # dashboard is # F4 key in a mac
           dashboard = M-a
 
@@ -145,6 +145,11 @@
     vim
     wget
     git
+
+    # Clipboard manager
+    libgda
+    gsound
+    gnomeExtensions.pano
   ];
 
   # This value determines the NixOS release from which the default

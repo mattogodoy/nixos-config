@@ -9,6 +9,7 @@
 
     ./ide/vscode.nix
 
+    ./browsers/chromium.nix
     ./browsers/firefox.nix
     ./browsers/librewolf.nix
   ];

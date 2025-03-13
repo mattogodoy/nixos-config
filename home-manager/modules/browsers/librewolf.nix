@@ -32,6 +32,7 @@ in
           };
         };
         in listToAttrs [
+          # To get the ID, view page the source of the extension in the addon store and search for "guid"
           (extension "1password-x-password-manager" "{d634138d-c276-4fc8-924b-40a0ea21d284}")
           (extension "ublock-origin" "uBlock0@raymondhill.net")
           (extension "darkreader" "addon@darkreader.org")
