@@ -4,6 +4,7 @@
     ./shell/zsh.nix
 
     ./tools/git.nix
+    ./tools/ssh.nix
 
     ./terminals/wezterm
 
